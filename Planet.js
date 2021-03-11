@@ -123,7 +123,7 @@ function generatePlanet(imageSize, planetOptions, colors, hasClouds = false, has
         }
     }
 
-    if(cloudGeneratorOptions) {
+    if(cloudGeneratorOptions == null) {
         cloudGeneratorOptions = {
             octaveCount: 6,
             amplitude: 8,
@@ -188,9 +188,12 @@ function generatePlanet(imageSize, planetOptions, colors, hasClouds = false, has
 
 
             //GROUND AND SEE LEVEL
-            if(value < planetOptions.beach_level && value > planetOptions.sea_level) {
+            if(value < planetOptions.beach_level && value > planetOptions.shore_level) {
                 color = colors.beach_color;
                 amp = 6;
+            } else if(value <= planetOptions.shore_level && value > planetOptions.sea_level) {
+                color = colors.shore_color;
+                amp = 2;
             } else if(value <= planetOptions.sea_level) {
                 color = colors.ocean_color;
                 amp = 2;
