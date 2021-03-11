@@ -1,0 +1,31 @@
+{
+  "name": "planet.js",
+  "version": "1.0.0",
+  "description": "Generates 2D Pixelated Images of Planets",
+  "main": "Planet.js",
+  "author": "SteffTek",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "perlin-noise": "0.0.1",
+    "pureimage": "^0.2.7",
+    "simplex-noise": "^2.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteffTek/planet.js.git"
+  },
+  "keywords": [
+    "planet",
+    "generation",
+    "2d",
+    "procedural"
+  ],
+  "bugs": {
+    "url": "https://github.com/SteffTek/planet.js/issues"
+  },
+  "homepage": "https://github.com/SteffTek/planet.js#readme"
+}
