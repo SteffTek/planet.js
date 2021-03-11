@@ -66,7 +66,7 @@ function percentToHex(percent) {
 }
 
 // Version 4.0
-const pSBC=(p,c0,c1,l)=>{
+function pSBC(p,c0,c1,l) {
     let r,g,b,P,f,t,h,i=parseInt,m=Math.round,a=typeof(c1)=="string";
     if(typeof(p)!="number"||p<-1||p>1||typeof(c0)!="string"||(c0[0]!='r'&&c0[0]!='#')||(c1&&!a))return null;
     if(!this.pSBCr)this.pSBCr=(d)=>{
