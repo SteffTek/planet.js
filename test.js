@@ -14,20 +14,20 @@ let colors = {
     cloud_opacity: 70,
     atmosphere_color: "#4F7AAD",
     atmosphere_opacity: 70,
-    shading_level: 2,
+    shading_level: 1.2,
     add_detail: true,
 }
 let planet_options = {
-    planet_radius: 80,
-    atmosphere_radius: 100,
+    planet_radius: 400,
+    atmosphere_radius: 500,
     sea_level: 0.42,
     shore_level: 0.48,
     beach_level: 0.5,
     mountain_level: 0.62,
     mountain_top_level: 0.75,
     cloud_level: 0.62,
-    cloud_radius: 90,
-    craters: true,
+    cloud_radius: 420,
+    craters: false,
     clouds: true,
     atmosphere: true
 }
@@ -94,7 +94,7 @@ let gasColors = {
     add_detail: true,
 }
 
-let size = 200;
+let size = 1000;
 
 //let image = Planet.generateGasGiant(size, gasOptions, gasColors);
 let image = Planet.generatePlanet(size, planet_options, colors, generator_options, cloud_generator);
