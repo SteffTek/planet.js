@@ -9,7 +9,7 @@ npm install git+https://github.com/SteffTek/planet.js
 ```
 
 # Other Planets
-![GreenPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GreenPlanet.png "GreenPlanet") ![AlienPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/AlienPlanet.png "AlienPlanet") ![Moon](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Moon.png "Moon")
+![GreenPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GreenPlanet.png "GreenPlanet") ![AlienPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/AlienPlanet.png "AlienPlanet") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Moon.png "Gas Giant") ![Moon](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GasGiant.png "Gas Giant") ![Sun](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Sun.png "Sun") ![Blue Star](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/BlueStar.png "Blue Star")
 
 # Usage
 ```js
@@ -24,9 +24,7 @@ const Planet = require("planet.js");
                 - planetOptions
                 - planetColors
 
-    Optional:   - hasClouds
-                - hasAtmosphere
-                - generatorOptions
+    Optional:   - generatorOptions
                 - cloudGeneratorOptions
 */
 let image Planet.generatePlanet([...]);
@@ -55,6 +53,7 @@ let colors = {
     cloud_opacity: 70,                  //Cloud Base Opacity
     atmosphere_color: "#4F7AAD",        //Atmosphere Color
     atmosphere_opacity: 40,             //Atmosphere Opacity/Density
+    shading_level: 2,                   //Shading Level (Float 0-2, 2 = Maximum)
     add_detail: true,                   //Plain Map or a bit more detailed?
 }
 let planet_options = {
@@ -67,6 +66,9 @@ let planet_options = {
     mountain_top_level: 0.75,
     cloud_level: 0.62,                  // CLOUD LEVEL IS CUSTOM GENERATED AND NOT AFFECTED BY THE OTHER LEVELS
     cloud_radius: 420,                  //Cloud Radius
+    craters: true,
+    clouds: true,
+    atmosphere: true
 }
 
 let generator_options = {
@@ -83,5 +85,5 @@ let cloud_generator = {
 
 let size = 1000; //Control the ImageSize
 
-let image = Planet.generatePlanet(size, planet_options, colors, true, true, generator_options, cloud_generator);
+let image = Planet.generatePlanet(size, planet_options, colors, generator_options, cloud_generator);
 ```

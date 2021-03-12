@@ -5,10 +5,12 @@ let colors = {
     ocean_color: "#181818",
     mountain_color: "#606060",
     mountain_top_color: "#606060",
+    crater_color: "#303030",
     cloud_color: "#ffffff",
     cloud_opacity: 70,
     atmosphere_color: "#eae1ee",
     atmosphere_opacity: 40,
+    shading_level: 1,
     add_detail: true,
 }
 let planet_options = {
@@ -21,6 +23,9 @@ let planet_options = {
     mountain_top_level: 0.75,
     cloud_level: 0.62,
     cloud_radius: 82,
+    craters: true,
+    clouds: false,
+    atmosphere: false
 }
 
 let generator_options = {

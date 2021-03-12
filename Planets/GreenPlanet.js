@@ -9,6 +9,7 @@ let colors = {
     cloud_opacity: 70,
     atmosphere_color: "#4F7AAD",
     atmosphere_opacity: 40,
+    shading_level: 2,
     add_detail: true,
 }
 let planet_options = {

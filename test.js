@@ -9,10 +9,12 @@ let colors = {
     ocean_color: "#0744a6",
     mountain_color: "#854d1d",
     mountain_top_color: "#ffffff",
+    crater_color: "#8b9e90",
     cloud_color: "#ffffff",
     cloud_opacity: 70,
     atmosphere_color: "#4F7AAD",
-    atmosphere_opacity: 40,
+    atmosphere_opacity: 70,
+    shading_level: 1.2,
     add_detail: true,
 }
 let planet_options = {
@@ -25,6 +27,9 @@ let planet_options = {
     mountain_top_level: 0.75,
     cloud_level: 0.62,
     cloud_radius: 420,
+    craters: false,
+    clouds: true,
+    atmosphere: true
 }
 
 let generator_options = {
@@ -39,9 +44,61 @@ let cloud_generator = {
     persistence: 0.4
 }
 
+let sun_options = {
+    star_radius: 400,
+    radiation_radius: 600,
+    radiation: true,
+    blind_spot_level: 0.9
+}
+
+let sun_colors = {
+    color: "#ffe8d5",
+    radiation_color: "#c98b2e",
+    blind_spot_color: "#3b2600",
+    radiation_opacity: 40,
+    add_detail: true,
+    blind_spots: true,
+}
+
+let blind_spots = {
+    octaveCount: 9,
+    amplitude: 3,
+    persistence: 0.5
+}
+
+let gasOptions = {
+    giants_radius: 80,
+    giants_atmosphere: 100,
+    atmosphere: true,
+    eyes: true
+}
+
+let gasColors = {
+    base_color: "#edcab2",
+    colors: [
+        "#b4a79e",
+        "#dcd0b8",
+        "#d1a77f",
+        "#e3dadf",
+        "#ddb47e",
+        "#b4a79e",
+        "#de7650",
+        "#d1a77f",
+        "#e3dadf",
+        "#ddb47e",
+    ],
+    atmosphere_color: "#edcab2",
+    eye_color: "#d93a00",
+    atmosphere_opacity: 70,
+    shading_level: 2,
+    add_detail: true,
+}
+
 let size = 1000;
 
-let image = Planet.generatePlanet(size, planet_options, colors, true, true, generator_options, cloud_generator);
+//let image = Planet.generateGasGiant(size, gasOptions, gasColors);
+let image = Planet.generatePlanet(size, planet_options, colors, generator_options, cloud_generator);
+//let image = Planet.generateStar(size, sun_options, sun_colors, generator_options, blind_spots);
 
 //TEST EXPORT
 PImage.encodePNGToStream(image, fs.createWriteStream('out.png')).then(() => {
