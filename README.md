@@ -9,7 +9,7 @@ npm install git+https://github.com/SteffTek/planet.js
 ```
 
 # Other Planets
-![GreenPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GreenPlanet.png "GreenPlanet") ![AlienPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/AlienPlanet.png "AlienPlanet") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Moon.png "Gas Giant") ![Moon](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GasGiant.png "Gas Giant") ![Sun](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Sun.png "Sun") ![Blue Star](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/BlueStar.png "Blue Star")
+![GreenPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GreenPlanet.png "GreenPlanet") ![AlienPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/AlienPlanet.png "AlienPlanet") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Moon.png "Moon") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GasGiant.png "Gas Giant") ![Sun](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Sun.png "Sun") ![Blue Star](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/BlueStar.png "Blue Star") ![Craters](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Craters.png "Craters")
 
 # Usage
 ```js
@@ -40,7 +40,7 @@ PImage.encodePNGToStream(image, fs.createWriteStream('out.png')).then(() => {
 ```
 
 # Example Options
-Example options for an OverWorld-Planet like in the preview above.
+## Overworld Planet
 ```js
 let colors = {
     land_color: "#4cfa69",              //Color of the Main Land
@@ -49,6 +49,7 @@ let colors = {
     ocean_color: "#0744a6",             //Color of the Deep Ocean
     mountain_color: "#854d1d",          //Color of the Mountains
     mountain_top_color: "#ffffff",      //Color of the Mountain Top (e.g. Snow)
+    crater_color: "#8b9e90",            //Main Color of Craters
     cloud_color: "#ffffff",             //Cloud Color
     cloud_opacity: 70,                  //Cloud Base Opacity
     atmosphere_color: "#4F7AAD",        //Atmosphere Color
@@ -86,4 +87,74 @@ let cloud_generator = {
 let size = 1000; //Control the ImageSize
 
 let image = Planet.generatePlanet(size, planet_options, colors, generator_options, cloud_generator);
+```
+
+## Sun
+```js
+let sun_options = {
+    star_radius: 400,
+    radiation_radius: 600,
+    radiation: true,
+    blind_spot_level: 0.9
+}
+
+let sun_colors = {
+    color: "#ffe8d5",
+    radiation_color: "#c98b2e",
+    blind_spot_color: "#3b2600",
+    radiation_opacity: 40,
+    add_detail: true,
+    blind_spots: true,
+}
+
+let blind_spots = {
+    octaveCount: 9,
+    amplitude: 3,
+    persistence: 0.5
+}
+
+let generator_options = {
+    octaveCount: 9,
+    amplitude: 5,
+    persistence: 0.5
+}
+
+let size = 1000;
+
+let image = Planet.generateStar(size, sun_options, sun_colors, generator_options, blind_spots);
+```
+
+## Gas Giant
+```js
+let gasOptions = {
+    giants_radius: 80,
+    giants_atmosphere: 100,
+    atmosphere: true,
+    eyes: true
+}
+
+let gasColors = {
+    base_color: "#edcab2",
+    colors: [
+        "#b4a79e",
+        "#dcd0b8",
+        "#d1a77f",
+        "#e3dadf",
+        "#ddb47e",
+        "#b4a79e",
+        "#de7650",
+        "#d1a77f",
+        "#e3dadf",
+        "#ddb47e",
+    ],
+    atmosphere_color: "#edcab2",
+    eye_color: "#d93a00",
+    atmosphere_opacity: 70,
+    shading_level: 2,
+    add_detail: true,
+}
+
+let size = 200;
+
+let image = Planet.generateGasGiant(size, gasOptions, gasColors);
 ```

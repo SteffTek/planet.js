@@ -344,7 +344,15 @@ function generatePlanet(imageSize, planetOptions, colors, generatorOptions = nul
                         color = pSBC(-0.3, color);
                     }
 
-                    color = pSBC(-Math.abs(distance(x, y, i1, i2)) / crater_radius, color);
+                    let lighter = Math.abs(distance(x, y, i1, i2)) / crater_radius;
+
+                    if(lighter > 0.5) {
+                        let p = ctx.getImageData(i1,i2,1,1).data;
+                        var hex = getHex(p[0], p[2], p[1]);
+                        color = blendColors(color, hex, lighter);
+                    } else {
+                        color = pSBC(lighter, color);
+                    }
 
                     value = noise[i1][i2]
                     if (value <= planetOptions.shore_level && value > planetOptions.sea_level) {
