@@ -15,6 +15,10 @@ npm install git+https://github.com/SteffTek/planet.js
 # Other Planets
 ![GreenPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GreenPlanet.png "GreenPlanet") ![AlienPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/AlienPlanet.png "AlienPlanet") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Moon.png "Moon") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GasGiant.png "Gas Giant") ![Sun](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Sun.png "Sun") ![Blue Star](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/BlueStar.png "Blue Star") ![Craters](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Craters.png "Craters")
 
+# ⚠ WARNING ⚠
+## With __bigger Images Sizes__ the processing becomes evermore intense and time consuming.
+## __And__ - Please check that your planets radius is half the image size at max, else errors may crash the generation.
+
 # Usage
 ```js
 const Planet = require("planet.js");
