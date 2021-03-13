@@ -3,7 +3,7 @@ const PImage = require('pureimage');
 const Planet = require("./Planet.js");
 
 let colors = {
-    land_color: "#4cfa69",
+    land_color: "#228747",
     beach_color: "#e9fe6d",
     shore_color: "#78dffb",
     ocean_color: "#0744a6",
@@ -67,8 +67,8 @@ let blind_spots = {
 }
 
 let gasOptions = {
-    giants_radius: 80,
-    giants_atmosphere: 100,
+    giants_radius: 400,
+    giants_atmosphere: 600,
     atmosphere: true,
     eyes: true
 }
@@ -95,14 +95,10 @@ let gasColors = {
 }
 
 let size = 1000;
+let seed = "Clara";
 
-//let image = Planet.generateGasGiant(size, gasOptions, gasColors);
-let image = Planet.generatePlanet(size, planet_options, colors, generator_options, cloud_generator);
-//let image = Planet.generateStar(size, sun_options, sun_colors, generator_options, blind_spots);
+//let image = Planet.generateGasGiant(size, gasOptions, gasColors, seed);
+let image = Planet.generatePlanet(size, planet_options, colors, seed, generator_options, cloud_generator);
+//let image = Planet.generateStar(size, sun_options, sun_colors, seed, generator_options, blind_spots);
 
-//TEST EXPORT
-PImage.encodePNGToStream(image, fs.createWriteStream('out.png')).then(() => {
-    console.log("wrote out the png file to out.png");
-}).catch((e)=>{
-    console.log("there was an error writing");
-});
+Planet.save(image,"out.png");

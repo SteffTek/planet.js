@@ -1,12 +1,17 @@
 const SimplexNoise = require("simplex-noise");
-const PerlinNoise = require('perlin-noise');
+const PerlinNoise = require('seeded-perlin-noise');
 const PImage = require('pureimage');
+const fs = require('fs');
 
 /*
     RANDOM NOISE GENERATION
 */
-function generatePerlinArray(width, height, options) {
+function generatePerlinArray(width, height, options, seed = null) {
     let perlinArray = [];
+
+    //SET SEED IF SET
+    PerlinNoise.setSeed(seed);
+
     let noise = PerlinNoise.generatePerlinNoise(width, height, options);
     for (let i = 0; i < height; i++) {
         let perlinRow = [];
@@ -32,8 +37,8 @@ function generateSimplexArray(width, height, seed) {
     return simplexArray;
 }
 
-function craterMap(width, height, generator_options) {
-    let perlinNoise = generatePerlinArray(width, height, generator_options);
+function craterMap(width, height, generator_options, seed) {
+    let perlinNoise = generatePerlinArray(width, height, generator_options, seed);
     let craters = []; //[[x,y],[x,y]]
 
     for (let x = 0; x < perlinNoise.length; x++) {
@@ -191,7 +196,7 @@ function distance(x1, y1, x2, y2) {
 /*
     PLANET GENERATION
 */
-function generatePlanet(imageSize, planetOptions, colors, generatorOptions = null, cloudGeneratorOptions = null) {
+function generatePlanet(imageSize, planetOptions, colors, seed = null, generatorOptions = null, cloudGeneratorOptions = null) {
 
     //GET VARS
     let width = imageSize, height = imageSize;
@@ -220,12 +225,12 @@ function generatePlanet(imageSize, planetOptions, colors, generatorOptions = nul
         }
     }
 
-    let noise = generatePerlinArray(width, height, generatorOptions);
+    let noise = generatePerlinArray(width, height, generatorOptions, seed);
 
     let grass_noise = null;
     //GENERATE DETAILS IF ENABLED
     if (colors.add_detail) {
-        grass_noise = generateSimplexArray(width, height, Math.random);
+        grass_noise = generateSimplexArray(width, height, seed);
     }
 
     var image = PImage.make(width, height);
@@ -306,7 +311,7 @@ function generatePlanet(imageSize, planetOptions, colors, generatorOptions = nul
 
     //CRATERS
     if (hasCraters) {
-        let craters = craterMap(width, height, generatorOptions);
+        let craters = craterMap(width, height, generatorOptions, seed);
 
         for (let i = 0; i < craters.length; i++) {
             let crater = craters[i];
@@ -318,7 +323,7 @@ function generatePlanet(imageSize, planetOptions, colors, generatorOptions = nul
             let inner_crater = Math.round(crater_radius * 0.2);
             crater_radius = crater_radius + crater_ring;
 
-            let blending = generatePerlinArray(width, width, cloudGeneratorOptions);
+            let blending = generatePerlinArray(width, width, cloudGeneratorOptions, seed);
 
             let x1 = 0;
             let y1 = 0;
@@ -384,7 +389,7 @@ function generatePlanet(imageSize, planetOptions, colors, generatorOptions = nul
 
     //CLOUDS
     if (hasClouds) {
-        let cloudNoise = generatePerlinArray(width, height, cloudGeneratorOptions);
+        let cloudNoise = generatePerlinArray(width, height, cloudGeneratorOptions, seed);
 
         let cloud_radius = planetOptions.cloud_radius;
         let cloud_level = planetOptions.cloud_level;
@@ -418,7 +423,7 @@ function generatePlanet(imageSize, planetOptions, colors, generatorOptions = nul
     return image;
 }
 
-function generateStar(imageSize, starOptions, colors, generatorOptions = null, blindSpotsGenerator = null) {
+function generateStar(imageSize, starOptions, colors, seed = null, generatorOptions = null, blindSpotsGenerator = null) {
     //GET VARS
     let width = imageSize, height = imageSize;
     let center = imageSize / 2;
@@ -447,11 +452,11 @@ function generateStar(imageSize, starOptions, colors, generatorOptions = null, b
         }
     }
 
-    let noise = generatePerlinArray(width, height, generatorOptions);
+    let noise = generatePerlinArray(width, height, generatorOptions, seed);
     let grass_noise = null;
     //GENERATE DETAILS IF ENABLED
     if (colors.add_detail) {
-        grass_noise = generateSimplexArray(width, height, Math.random);
+        grass_noise = generateSimplexArray(width, height, seed);
     }
 
     var image = PImage.make(width, height);
@@ -504,7 +509,7 @@ function generateStar(imageSize, starOptions, colors, generatorOptions = null, b
 
     //BlindSpots
     if (colors.blind_spots) {
-        let blindSpotNoise = generatePerlinArray(width, height, blindSpotsGenerator);
+        let blindSpotNoise = generatePerlinArray(width, height, blindSpotsGenerator, seed);
 
         for (let i1 = 0; i1 < blindSpotNoise.length; i1++) {
             let row = blindSpotNoise[i1];
@@ -538,7 +543,7 @@ function generateStar(imageSize, starOptions, colors, generatorOptions = null, b
     return image;
 }
 
-function generateGasGiant(imageSize, options, colors) {
+function generateGasGiant(imageSize, options, colors, seed = null) {
 
     //GET VARS
     let width = imageSize, height = imageSize;
@@ -553,7 +558,7 @@ function generateGasGiant(imageSize, options, colors) {
     let grass_noise = null;
     //GENERATE DETAILS IF ENABLED
     if (colors.add_detail) {
-        grass_noise = generateSimplexArray(width, height, Math.random);
+        grass_noise = generateSimplexArray(width, height, seed);
     }
 
     var image = PImage.make(width, height);
@@ -640,7 +645,7 @@ function generateGasGiant(imageSize, options, colors) {
 
     //DRAW EYES
     if (hasEyes) {
-        let eyes = craterMap(width, height, cloudGeneratorOptions = {octaveCount: 6, amplitude: 8, persistence: 0.2 })
+        let eyes = craterMap(width, height, cloudGeneratorOptions = {octaveCount: 4, amplitude: 1, persistence: 0.2 }, seed)
 
         for (let i = 0; i < eyes.length; i++) {
             let eye = eyes[i];
@@ -700,12 +705,16 @@ function generateGasGiant(imageSize, options, colors) {
         }
     }
 
-
     return image;
+}
+
+async function save(object, path) {
+    await PImage.encodePNGToStream(object, fs.createWriteStream(path));
 }
 
 module.exports = {
     generateGasGiant: generateGasGiant,
     generatePlanet: generatePlanet,
     generateStar: generateStar,
+    save: save,
 }

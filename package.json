@@ -8,6 +8,7 @@
   "dependencies": {
     "perlin-noise": "0.0.1",
     "pureimage": "^0.2.7",
+    "seeded-perlin-noise": "git+https://github.com/aramperes/seeded-node-perlin-noise.git",
     "simplex-noise": "^2.4.0"
   },
   "devDependencies": {},
