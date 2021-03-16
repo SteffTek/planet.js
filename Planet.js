@@ -707,12 +707,27 @@ function generateGasGiant(imageSize, options, colors, seed = null) {
 
     return image;
 }
+
 /*
     ASYNC FUNCTIONS
 */
 const asyncGeneratePlanet = (imageSize, planetOptions, colors, seed = null, generatorOptions = null, cloudGeneratorOptions = null) => {
     return new Promise((resolve) => {
         let image = generatePlanet(imageSize, planetOptions, colors, seed, generatorOptions, cloudGeneratorOptions);
+        resolve(image);
+    })
+}
+
+const asyncGenerateGasGiant = (imageSize, options, colors, seed) => {
+    return new Promise((resolve) => {
+        let image = generateGasGiant(imageSize, options, colors, seed);
+        resolve(image);
+    })
+}
+
+const asyncGenerateStar = (imageSize, starOptions, colors, seed = null, generatorOptions = null, blindSpotsGenerator = null) => {
+    return new Promise((resolve) => {
+        let image = generateStar(imageSize, starOptions, colors, seed, generatorOptions, blindSpotsGenerator);
         resolve(image);
     })
 }
@@ -732,7 +747,9 @@ async function getBuffer(object) {
     EXPORTS
 */
 module.exports = {
+    asyncGenerateGasGiant: asyncGenerateGasGiant,
     asyncGeneratePlanet: asyncGeneratePlanet,
+    asyncGenerateStar: asyncGenerateStar,
     generateGasGiant: generateGasGiant,
     generatePlanet: generatePlanet,
     generateStar: generateStar,
