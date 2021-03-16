@@ -707,14 +707,35 @@ function generateGasGiant(imageSize, options, colors, seed = null) {
 
     return image;
 }
+/*
+    ASYNC FUNCTIONS
+*/
+const asyncGeneratePlanet = (imageSize, planetOptions, colors, seed = null, generatorOptions = null, cloudGeneratorOptions = null) => {
+    return new Promise((resolve) => {
+        let image = generatePlanet(imageSize, planetOptions, colors, seed, generatorOptions, cloudGeneratorOptions);
+        resolve(image);
+    })
+}
 
+/*
+    DATA FUNCTIONS
+*/
 async function save(object, path) {
     await PImage.encodePNGToStream(object, fs.createWriteStream(path));
 }
 
+async function getBuffer(object) {
+    return await object.data;
+}
+
+/*
+    EXPORTS
+*/
 module.exports = {
+    asyncGeneratePlanet: asyncGeneratePlanet,
     generateGasGiant: generateGasGiant,
     generatePlanet: generatePlanet,
     generateStar: generateStar,
+    getBuffer: getBuffer,
     save: save,
 }
