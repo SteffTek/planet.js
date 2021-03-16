@@ -29,8 +29,5 @@
   "bugs": {
     "url": "https://github.com/SteffTek/planet.js/issues"
   },
-  "homepage": "https://github.com/SteffTek/planet.js#readme",
-  "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
-  }
+  "homepage": "https://github.com/SteffTek/planet.js#readme"
 }
