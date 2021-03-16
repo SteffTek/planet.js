@@ -1,5 +1,5 @@
 {
-  "name": "planet.js",
+  "name": "@stefftek/planet.js",
   "version": "1.0.0",
   "description": "Generates 2D Pixelated Images of Planets",
   "main": "Planet.js",
