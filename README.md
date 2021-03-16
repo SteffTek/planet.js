@@ -11,7 +11,7 @@ If you ever wanted to create 2D procedural planets in NodeJS.... Why would you?
 
 # Installation
 ```
-npm install git+https://github.com/SteffTek/planet.js
+npm i @stefftek/planet.js
 ```
 
 # Other Planets
