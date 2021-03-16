@@ -38,7 +38,7 @@ const Planet = require("planet.js");
     Optional:   - generatorOptions
                 - cloudGeneratorOptions
 */
-let image Planet.generatePlanet([...]);
+let image = Planet.generatePlanet([...]);
 
 /*
     Export with PureImage
