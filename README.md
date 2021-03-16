@@ -24,7 +24,7 @@ Things might not be _that_ stable...
 
 # Usage
 ```js
-const Planet = require("planet.js");
+const Planet = require("@stefftek/planet.js");
 
 [...]
 
