@@ -168,3 +168,11 @@ let seed = "ASDFG";
 
 let image = Planet.generateGasGiant(size, gasOptions, gasColors, seed);
 ```
+
+# Async
+## ⚠ MAY BE UNSTABLE ⚠
+Async is still in testing. You can use the async generation like
+```javascript
+let image = await asyncGeneratePlanet([...])
+```
+This works the same for GasGiants, Stars or normal Planets.
