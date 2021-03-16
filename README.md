@@ -1,5 +1,7 @@
 # Planet.js
 ## Procedural generated 2D planets in NodeJS.
+[![Discord](https://img.shields.io/discord/803319138260090910?color=%237289DA&label=Discord)](https://discord.gg/Qgv8DSMYM3) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/stefftek/planet.js) ![GitHub issues](https://img.shields.io/github/issues/stefftek/planet.js)
+
 If you ever wanted to create 2D procedural planets in NodeJS.... Why would you?
 
 ![OverWorld.png](https://raw.githubusercontent.com/SteffTek/planet.js/main/Overworld.png)
@@ -18,6 +20,7 @@ npm install git+https://github.com/SteffTek/planet.js
 # ⚠ WARNING ⚠
 ## With __bigger Images Sizes__ the processing becomes evermore intense and time consuming.
 ## __And__ - Please check that your planets radius is half the image size at max, else errors may crash the generation.
+Things might not be _that_ stable...
 
 # Usage
 ```js
