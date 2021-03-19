@@ -4,7 +4,7 @@
 
 If you ever wanted to create 2D procedural planets in NodeJS.... Why would you?
 
-![OverWorld.png](https://raw.githubusercontent.com/SteffTek/planet.js/main/Overworld.png)
+![Preview.png](https://raw.githubusercontent.com/SteffTek/planet.js/main/Preview.png "Preview.png")
 
 # About
 **Planets.js** was created to help a friend of mine - Clara - with her game she creates in NodeJS as a discord bot. She asked me, if I know a tool to generate Planets inside NodeJS as 2D image. Well, as you can see I nearly died of __f***ing boredom__, so Planet.js was created!
