@@ -76,17 +76,12 @@ let gasOptions = {
 let gasColors = {
     base_color: "#edcab2",
     colors: [
-        "#b4a79e",
-        "#dcd0b8",
-        "#d1a77f",
-        "#e3dadf",
-        "#ddb47e",
-        "#b4a79e",
-        "#de7650",
-        "#d1a77f",
-        "#e3dadf",
-        "#ddb47e",
-    ],
+        '#5a7b81', '#597a80',
+        '#5e7c82', '#60b3bf',
+        '#70789d', '#5b6280',
+        '#cfd4e6', '#6375bf',
+        '#6e9d74'
+      ],
     atmosphere_color: "#edcab2",
     eye_color: "#d93a00",
     atmosphere_opacity: 70,
@@ -97,8 +92,8 @@ let gasColors = {
 let size = 1000;
 let seed = "Clara";
 
-//let image = Planet.generateGasGiant(size, gasOptions, gasColors, seed);
-let image = Planet.generatePlanet(size, planet_options, colors, seed, generator_options, cloud_generator);
+let image = Planet.generateGasGiant(size, gasOptions, gasColors, seed);
+//let image = Planet.generatePlanet(size, planet_options, colors, seed, generator_options, cloud_generator);
 //let image = Planet.generateStar(size, sun_options, sun_colors, seed, generator_options, blind_spots);
 
 Planet.save(image,"out.png");

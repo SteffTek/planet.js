@@ -1,6 +1,6 @@
 # Planet.js
 ## Procedural generated 2D planets in NodeJS.
-[![Discord](https://img.shields.io/discord/803319138260090910?color=%237289DA&label=Discord)](https://discord.gg/Qgv8DSMYM3) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/stefftek/planet.js) ![GitHub issues](https://img.shields.io/github/issues/stefftek/planet.js)
+[![Discord](https://img.shields.io/discord/803319138260090910?color=%237289DA&label=Discord)](https://discord.gg/Qgv8DSMYM3) [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/stefftek/planet.js)](https://github.com/SteffTek/planet.js) [![GitHub issues](https://img.shields.io/github/issues/stefftek/planet.js)](https://github.com/SteffTek/planet.js/issues)
 
 If you ever wanted to create 2D procedural planets in NodeJS.... Why would you?
 
@@ -176,3 +176,5 @@ Async is still in testing. You can use the async generation like
 let image = await asyncGeneratePlanet([...])
 ```
 This works the same for GasGiants, Stars or normal Planets.
+
+### Initial Testing seemed stable! ❤

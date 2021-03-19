@@ -351,8 +351,8 @@ function generatePlanet(imageSize, planetOptions, colors, seed = null, generator
 
                     let lighter = Math.abs(distance(x, y, i1, i2)) / crater_radius;
 
-                    if(lighter > 0.5) {
-                        let p = ctx.getImageData(i1,i2,1,1).data;
+                    if (lighter > 0.5) {
+                        let p = ctx.getImageData(i1, i2, 1, 1).data;
                         var hex = getHex(p[0], p[2], p[1]);
                         color = blendColors(color, hex, lighter);
                     } else {
@@ -645,7 +645,7 @@ function generateGasGiant(imageSize, options, colors, seed = null) {
 
     //DRAW EYES
     if (hasEyes) {
-        let eyes = craterMap(width, height, cloudGeneratorOptions = {octaveCount: 4, amplitude: 1, persistence: 0.2 }, seed)
+        let eyes = craterMap(width, height, cloudGeneratorOptions = { octaveCount: 4, amplitude: 1, persistence: 0.2 }, seed)
 
         for (let i = 0; i < eyes.length; i++) {
             let eye = eyes[i];
@@ -679,8 +679,8 @@ function generateGasGiant(imageSize, options, colors, seed = null) {
 
                     let lighter = Math.abs(distance(x, y, i1, i2) / eye_radius);
 
-                    if(lighter > 0.3) {
-                        let p = ctx.getImageData(i1,i2,1,1).data;
+                    if (lighter > 0.3) {
+                        let p = ctx.getImageData(i1, i2, 1, 1).data;
                         var hex = getHex(p[0], p[2], p[1]);
                         color = blendColors(color, hex, lighter);
                     } else {

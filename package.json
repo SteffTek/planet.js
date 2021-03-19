@@ -1,12 +1,12 @@
 {
   "name": "@stefftek/planet.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generates 2D Pixelated Images of Planets",
   "main": "Planet.js",
   "author": "SteffTek",
   "license": "Apache-2.0",
   "dependencies": {
-    "perlin-noise": "0.0.1",
+    "perlin-noise": "^0.0.1",
     "pureimage": "^0.2.7",
     "seeded-perlin-noise": "git+https://github.com/aramperes/seeded-node-perlin-noise.git",
     "simplex-noise": "^2.4.0"
@@ -24,7 +24,16 @@
     "planet",
     "generation",
     "2d",
-    "procedural"
+    "procedural",
+    "generator",
+    "gas giants",
+    "gas planets",
+    "planets",
+    "stars",
+    "sun",
+    "nodejs",
+    "random",
+    "generated"
   ],
   "bugs": {
     "url": "https://github.com/SteffTek/planet.js/issues"
