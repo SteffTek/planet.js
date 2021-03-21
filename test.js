@@ -10,26 +10,30 @@ let colors = {
     mountain_color: "#854d1d",
     mountain_top_color: "#ffffff",
     crater_color: "#8b9e90",
+    pole_color: "#ffffff",
     cloud_color: "#ffffff",
     cloud_opacity: 70,
     atmosphere_color: "#4F7AAD",
     atmosphere_opacity: 70,
-    shading_level: 1.2,
+    shading_level: 2,
     add_detail: true,
 }
 let planet_options = {
-    planet_radius: 400,
-    atmosphere_radius: 500,
+    planet_radius: 80,
+    atmosphere_radius: 95,
     sea_level: 0.42,
-    shore_level: 0.48,
-    beach_level: 0.5,
+    shore_level: 0.45,
+    beach_level: 0.46,
     mountain_level: 0.62,
     mountain_top_level: 0.75,
     cloud_level: 0.62,
-    cloud_radius: 420,
+    cloud_radius: 85,
+    pole_level: 0.25,
     craters: false,
     clouds: true,
-    atmosphere: true
+    atmosphere: true,
+    poles: true,
+    hard_pole_lines: true,
 }
 
 let generator_options = {
@@ -89,11 +93,11 @@ let gasColors = {
     add_detail: true,
 }
 
-let size = 1000;
+let size = 200;
 let seed = "Clara";
 
-let image = Planet.generateGasGiant(size, gasOptions, gasColors, seed);
-//let image = Planet.generatePlanet(size, planet_options, colors, seed, generator_options, cloud_generator);
+//let image = Planet.generateGasGiant(size, gasOptions, gasColors, seed);
+let image = Planet.generatePlanet(size, planet_options, colors, null, generator_options, cloud_generator);
 //let image = Planet.generateStar(size, sun_options, sun_colors, seed, generator_options, blind_spots);
 
 Planet.save(image,"out.png");

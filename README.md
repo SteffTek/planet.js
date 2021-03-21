@@ -15,7 +15,7 @@ npm i @stefftek/planet.js
 ```
 
 # Other Planets
-![GreenPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GreenPlanet.png "GreenPlanet") ![AlienPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/AlienPlanet.png "AlienPlanet") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Moon.png "Moon") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GasGiant.png "Gas Giant") ![Sun](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Sun.png "Sun") ![Blue Star](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/BlueStar.png "Blue Star") ![Craters](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Craters.png "Craters") ![DesertPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/DesertPlanet.png "DesertPlanet") ![LavaPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/LavaPlanet.png "LavaPlanet") ![RockPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/RockPlanet.png "RockPlanet")
+![GreenPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GreenPlanet.png "GreenPlanet") ![AlienPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/AlienPlanet.png "AlienPlanet") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Moon.png "Moon") ![Gas Giant](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/GasGiant.png "Gas Giant") ![Sun](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Sun.png "Sun") ![Blue Star](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/BlueStar.png "Blue Star") ![Craters](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Craters.png "Craters") ![DesertPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/DesertPlanet.png "DesertPlanet") ![LavaPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/LavaPlanet.png "LavaPlanet") ![RockPlanet](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/RockPlanet.png "RockPlanet") ![Poles](https://raw.githubusercontent.com/SteffTek/planet.js/main/Planets/Poles.png "Poles")
 
 # ⚠ WARNING ⚠
 ## With __bigger Images Sizes__ the processing becomes evermore intense and time consuming.
@@ -57,6 +57,7 @@ let colors = {
     mountain_color: "#854d1d",          //Color of the Mountains
     mountain_top_color: "#ffffff",      //Color of the Mountain Top (e.g. Snow)
     crater_color: "#8b9e90",            //Main Color of Craters
+    pole_color: "#BDDEEC",              //Color of Poles (Ice)
     cloud_color: "#ffffff",             //Cloud Color
     cloud_opacity: 70,                  //Cloud Base Opacity
     atmosphere_color: "#4F7AAD",        //Atmosphere Color
@@ -74,9 +75,12 @@ let planet_options = {
     mountain_top_level: 0.75,
     cloud_level: 0.62,                  // CLOUD LEVEL IS CUSTOM GENERATED AND NOT AFFECTED BY THE OTHER LEVELS
     cloud_radius: 420,                  //Cloud Radius
-    craters: true,
-    clouds: true,
-    atmosphere: true
+    pole_level: 0.50,                   //How big the Poles should be (Float 0-2, 2 = Full Coverage)
+    craters: true,                      //Should Craters Spawn?
+    clouds: true,                       //Should Clouds Spawn?
+    atmosphere: true,                   //Should the Planet have an atmosphere
+    poles: true,                        //Should the Planet have icy poles?
+    hard_pole_lines: false              //Should the pole line be a hard or a soft cut?
 }
 
 let generator_options = {

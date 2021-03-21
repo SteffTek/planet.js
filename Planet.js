@@ -175,6 +175,19 @@ function checkIfInRadius(x, y, centerX, centerY, radius) {
     return false;
 }
 
+function checkIfInEllipse(x, y, centerX, centerY, width, height) {
+    width *= width;
+    height *= height;
+
+    let meff = (Math.pow((x - centerX),2) / width) + (Math.pow((y - centerY), 2) / height);
+
+    if(meff <= 1) {
+        return true;
+    }
+
+    return false;
+}
+
 function calcShading(input, center, progression, shading_level) {
     let shading_begin = center * shading_level;
     if (progression > shading_begin) {
@@ -191,6 +204,17 @@ function distance(x1, y1, x2, y2) {
     var b = y1 - y2;
 
     return Math.sqrt(a * a + b * b);
+}
+
+function distanceInCircle(centerX, centerY, x, y, radius) {
+    return Math.abs(distance(centerX, centerY, x, y)) / radius;
+}
+
+function distanceInEllipse(centerX, centerY, x, y, width, height) {
+    width *= width;
+    height *= height;
+    let meff = (Math.pow((x - centerX),2) / width) + (Math.pow((y - centerY), 2) / height);
+    return meff;
 }
 
 /*
@@ -309,6 +333,75 @@ function generatePlanet(imageSize, planetOptions, colors, seed = null, generator
         }
     }
 
+    //POLES
+    if(planetOptions.poles) {
+        let pole_level = planetOptions.pole_level;
+        let pole_size = (radius * pole_level);
+        let inner_pole = (radius * pole_level) * 0.9;
+
+        let north_pole = [width / 2, imageSize / 2 - radius], south_pole = [width / 2,imageSize / 2 + radius]
+
+        //DRAW POLES
+        for (let i1 = 0; i1 < noise.length; i1++) {
+            let row = noise[i1];
+
+            for (let i2 = 0; i2 < row.length; i2++) {
+                let value = noise[i1][i2];
+
+                //CHECK IF IN PLANET RADIUS
+                if (!checkIfInRadius(i2, i1, center, center, radius)) {
+                    continue;
+                }
+
+                //CHECK IF IN POLE RADIUS
+                if(!checkIfInEllipse(i2,i1,north_pole[0],north_pole[1],radius * 2,pole_size) && !checkIfInEllipse(i2,i1,south_pole[0],south_pole[1],radius * 2,pole_size)) {
+                    continue;
+                }
+
+                //OUTER ELLIPSE
+
+                color = colors.pole_color;
+
+                let lighter = distanceInEllipse(north_pole[0], north_pole[1], north_pole[0], i1, radius * 2,pole_size);
+                if(i1 > imageSize / 2) {
+                    lighter = distanceInEllipse(south_pole[0], south_pole[1], south_pole[0], i1, radius * 2,pole_size);
+                }
+
+                let lighter2 = distanceInEllipse(north_pole[0], north_pole[1], north_pole[0], i1, radius * 2,inner_pole);
+                if(i1 > imageSize / 2) {
+                    lighter2 = distanceInEllipse(south_pole[0], south_pole[1], south_pole[0], i1, radius * 2,inner_pole);
+                }
+
+                lighter *= lighter2;
+                if(lighter > 1) {
+                    lighter = 1;
+                }
+
+                let p = ctx.getImageData(i2, i1, 1, 1).data;
+                let hex = getHex(p[0], p[2], p[1]);
+
+                if(!planetOptions.hard_pole_lines) {
+                    color = blendColors(color, hex, lighter);
+                }
+
+
+                if (colors.add_detail) {
+                    let lightenAmount = grass_noise[i2][i1] * 5
+                    lightenAmount = calcShading(lightenAmount, center, i1, colors.shading_level);
+                    color = lightenColor(color, lightenAmount)
+                }
+
+                //GROUND AND SEE LEVEL
+                if (value < planetOptions.beach_level) {
+                    color = blendColors("#BDDEEC", hex, lighter + 0.01);
+                }
+
+                ctx.fillStyle = color;
+                ctx.fillRect(i2, i1, 1, 1);
+            }
+        }
+    }
+
     //CRATERS
     if (hasCraters) {
         let craters = craterMap(width, height, generatorOptions, seed);
@@ -349,7 +442,7 @@ function generatePlanet(imageSize, planetOptions, colors, seed = null, generator
                         color = pSBC(-0.3, color);
                     }
 
-                    let lighter = Math.abs(distance(x, y, i1, i2)) / crater_radius;
+                    let lighter = distanceInCircle(x, y, i1, i2, crater_radius);
 
                     if (lighter > 0.5) {
                         let p = ctx.getImageData(i1, i2, 1, 1).data;
