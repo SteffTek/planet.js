@@ -320,7 +320,7 @@ function generatePlanet(imageSize, planetOptions, colors, seed = null, generator
             //SHOULD ADD DETAILS
             if (colors.add_detail) {
 
-                let detail_value = Number.parseFloat((value - 0.5).toFixed(2));
+                let detail_value = Number.parseFloat((value * 0.25).toFixed(2));
                 color = pSBC(detail_value, color);
 
                 let lightenAmount = grass_noise[i2][i1] * amp
@@ -834,6 +834,28 @@ async function save(object, path) {
 
 async function getBuffer(object) {
     return await object.data;
+}
+
+/*
+    OTHER PUBLIC
+*/
+function rotate(original, degrees) {
+
+    let width = original.width;
+    let height = original.height;
+
+    var context = original.getContext('2d');
+
+    var angle = degrees * Math.PI / 180;
+
+    context.translate(width / 2, height / 2);
+    context.rotate(angle);
+    context.drawImage(original, -width / 2, -height / 2, width, height);
+    context.fillRect(10,10,100,100);
+    context.rotate(-angle);
+    context.translate(-width, -height);
+
+    return original;
 }
 
 /*

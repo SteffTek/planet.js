@@ -1,6 +1,6 @@
 {
   "name": "@stefftek/planet.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Generates 2D Pixelated Images of Planets",
   "main": "Planet.js",
   "author": "SteffTek",
