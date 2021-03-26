@@ -320,7 +320,7 @@ function generatePlanet(imageSize, planetOptions, colors, seed = null, generator
             //SHOULD ADD DETAILS
             if (colors.add_detail) {
 
-                let detail_value = Number.parseFloat((value * 0.25).toFixed(2));
+                let detail_value = Number.parseFloat(((value * 0.25) - 0.5).toFixed(2));
                 color = pSBC(detail_value, color);
 
                 let lightenAmount = grass_noise[i2][i1] * amp
