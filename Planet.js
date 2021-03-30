@@ -844,18 +844,19 @@ function rotate(original, degrees) {
     let width = original.width;
     let height = original.height;
 
-    var context = original.getContext('2d');
+    var newImage = PImage.make(width, height);
+    var context = newImage.getContext('2d');
 
     var angle = degrees * Math.PI / 180;
 
+    context.clearRect(0,0,width,height);
     context.translate(width / 2, height / 2);
     context.rotate(angle);
     context.drawImage(original, -width / 2, -height / 2, width, height);
-    context.fillRect(10,10,100,100);
     context.rotate(-angle);
     context.translate(-width, -height);
 
-    return original;
+    return newImage;
 }
 
 /*
@@ -869,5 +870,6 @@ module.exports = {
     generatePlanet: generatePlanet,
     generateStar: generateStar,
     getBuffer: getBuffer,
+    rotate: rotate,
     save: save,
 }

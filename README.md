@@ -41,6 +41,11 @@ const Planet = require("@stefftek/planet.js");
 let image = Planet.generatePlanet([...]);
 
 /*
+    Rotation
+*/
+image = Planet.rotate(image, 45 /*Degrees*/);
+
+/*
     Export with PureImage
 */
 Planet.save(image, "Planet.png") //Image Object and Path
